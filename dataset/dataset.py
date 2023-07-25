@@ -11,10 +11,12 @@ import cv2
 import random
 import numpy as np
 
-transform = transforms.Compose([
+transform_pretrained = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
+
+transform = transforms.ToTensor()
 
 
 class MyDataset(Dataset):
@@ -25,6 +27,7 @@ class MyDataset(Dataset):
     def __init__(self, args):
         self.dataset_path = args.dataset_path
         self.flip_odds = args.flip_odds
+        self.use_pretrained = args.use_pretrained
         self.sv_augmentation = args.sv_augmentation
         self.img_size = args.img_size
         self.category = os.listdir(self.dataset_path)
@@ -77,7 +80,10 @@ class MyDataset(Dataset):
         grey_bg[int(grey_bg.shape[0] / 2 - img.shape[0] / 2):int(grey_bg.shape[0] / 2 + img.shape[0] / 2),
                 int(grey_bg.shape[1] / 2 - img.shape[1] / 2):int(grey_bg.shape[1] / 2 + img.shape[1] / 2)] = img
 
-        img = transform(grey_bg)
+        if self.use_pretrained:
+            img = transform_pretrained(grey_bg)
+        else:
+            img = transform(grey_bg) * 2 - 1
 
         return img, label
 
