@@ -16,10 +16,12 @@ def get_args():
     parser.add_argument('--flip_odds', default=0.5, type=float, help='odds of flip of augmentation')
     parser.add_argument('--sv_augmentation', default=True, type=bool, help='sv augmentation')
     parser.add_argument('--epochs', default=100, type=int)
-    parser.add_argument('--batch_size', default=64, type=int)
+    parser.add_argument('--batch_size', default=512, type=int)
     parser.add_argument('--num_class', default=67, type=int)
     parser.add_argument('--device', default='0', help='-1 for CPU')
     parser.add_argument('--weight_path', default='', help='path to trained model weight')
+    parser.add_argument('--img0_path', default='', help='path for img0 waiting for inference')
+    parser.add_argument('--img1_path', default='', help='path for img1 waiting for inference')
     parser.add_argument('--show_args', default=True, type=bool, help='print args to output')
     parser.add_argument('--dataset_path',
                         default="/media/cacious/share/luggage_detect/reid_dataset/labeled/reid_dataset_0724",

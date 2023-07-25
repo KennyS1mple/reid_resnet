@@ -6,7 +6,6 @@ import numpy as np
 from PIL import Image
 import cv2
 import os
-import sys
 from torchvision import transforms
 
 transform = transforms.Compose([
@@ -16,6 +15,9 @@ transform = transforms.Compose([
 
 
 def pic2tensor(img_path, args):
+    """
+    边缘填充
+    """
     img = np.asarray(Image.open(img_path).convert("RGB"), dtype=np.uint8)
     h, w = img.shape[:2]
     ratio = min(args.img_size[0] / w, args.img_size[1] / h)

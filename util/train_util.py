@@ -35,7 +35,7 @@ def train(model, dataloader, loss_func, optimizer, args):
             save_model(f"./weight/res_{now_time}_{epoch}.pth",
                        epoch, model, optimizer)
             print(f"Weight saved successfully.epoch:{epoch}")
-        if args.epochs - epoch < 10:
+        if args.epochs - epoch < 5:
             save_model(f"./weight/res_{now_time}_{epoch}.pth",
                        epoch, model, optimizer)
             print(f"Weight saved successfully.epoch:{epoch}")
