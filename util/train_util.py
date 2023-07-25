@@ -26,16 +26,15 @@ def train(model, dataloader, loss_func, optimizer, args):
             _, preds = torch.max(output, 1)
             correct += torch.sum(preds == label_batch)
         # scheduler.step()
-        print("epoch: " + str(epoch) + "---loss: " + str(loss.item()) +
-              "---acc: " + str((correct / len(dataloader.dataset)).item()))
-
+        print("epoch : %4d ---loss : %10.8f ---acc : %10.8f" %
+              (epoch, loss.item(), correct / len(dataloader.dataset)).item())
         if epoch % 10 == 0 and epoch > 0:
             # res_md_h_epoch.pth
             now_time = time.strftime('%m%d_%H', time.localtime(time.time()))
-            save_model(f"./weight/res_{now_time}_{epoch}.pth",
+            save_model(f"./weight/res_{now_time}_{epoch}_relu_{args.use_relu}.pth",
                        epoch, model, optimizer)
-            print(f"Weight saved successfully.epoch:{epoch}")
+            print("Weight saved successfully.epoch : %4d" % epoch)
         if args.epochs - epoch < 5:
-            save_model(f"./weight/res_{now_time}_{epoch}.pth",
+            save_model(f"./weight/res_{now_time}_{epoch}_relu_{args.use_relu}.pth",
                        epoch, model, optimizer)
-            print(f"Weight saved successfully.epoch:{epoch}")
+            print("Weight saved successfully.epoch : %4d" % epoch)

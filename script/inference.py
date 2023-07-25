@@ -16,6 +16,7 @@ img1 = pic2tensor(args.img1_path, args)
 
 training_model = create_training_model(args)
 training_model = load_model(training_model, args.weight_path)
+training_model.eval()
 model = training_model.model
 
 _input = torch.cat([img0, img1], 0).to(device)

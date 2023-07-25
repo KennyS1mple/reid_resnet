@@ -8,4 +8,4 @@ from torch.utils.data import DataLoader
 
 def get_dataloader(args):
     dataset = MyDataset(args)
-    return DataLoader(dataset, args.batch_size, True)
+    return DataLoader(dataset, args.batch_size, True, num_workers=4)

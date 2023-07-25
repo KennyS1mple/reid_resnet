@@ -17,12 +17,11 @@ device = torch.device('cpu')
 training_model = create_training_model(args)
 training_model = load_model(training_model, args.weight_path).to(device)
 training_model.eval()
-model = training_model.model
 
 img0 = pic2tensor(args.img0_path, args).to(device)
 
 start = time.time()
-output = model(img0)
+output = training_model(img0)
 end = time.time()
 print(end - start)
 print(torch.argmax(output, dim=1))

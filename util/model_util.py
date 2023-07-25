@@ -7,5 +7,5 @@ from model.resnet import resnet
 
 
 def create_training_model(args):
-    reid_model = resnet(args.reid_dim)
+    reid_model = resnet(args.reid_dim, args)
     return TrainingModel(reid_model, args.reid_dim, args.num_class)
