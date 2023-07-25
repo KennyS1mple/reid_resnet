@@ -10,6 +10,7 @@ import torch
 def get_args():
     parser = argparse.ArgumentParser()
 
+    # bool参数只要添加了均为True
     parser.add_argument('--reid_dim', default=128, type=int, help='reid dimension')
     parser.add_argument('--img_size', default=128, type=int, help='image size')
     parser.add_argument('--res_depth', default=50, type=int, help='resnet depth')
