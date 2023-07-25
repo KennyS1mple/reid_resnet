@@ -34,7 +34,7 @@ def train(model, dataloader, loss_func, optimizer, args):
             epoch_loss += loss.item()
         # scheduler.step()
 
-        print("epoch : %4d ---loss : %10.8f ---acc : %10.8f" %
+        print("epoch : %4d ---loss : %11.8f ---acc : %10.8f" %
               (epoch, epoch_loss, (correct / len(dataloader.dataset)).item()))
 
         if epoch % 10 == 0 and epoch > 0:
