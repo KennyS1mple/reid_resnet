@@ -37,12 +37,12 @@ def train(model, dataloader, loss_func, optimizer, args):
         print("epoch : %4d ---loss : %11.8f ---acc : %10.8f" %
               (epoch, epoch_loss, (correct / len(dataloader.dataset)).item()))
 
-        if epoch % 10 == 0 and epoch > 0:
+        if epoch % 50 == 0 and epoch > 0:
             now_time = time.strftime('%m%d_%H', time.localtime(time.time()))
             save_model(f"./weight/res{args.res_depth}_{now_time}_{epoch}_relu_{args.use_relu}.pth",
                        epoch, model, optimizer)
             print("Weight saved successfully.epoch : %4d" % epoch)
-        if args.epochs - epoch < 5:
+        if args.epochs - epoch < 3:
             now_time = time.strftime('%m%d_%H', time.localtime(time.time()))
             save_model(f"./weight/res{args.res_depth}_{now_time}_{epoch}_relu_{args.use_relu}.pth",
                        epoch, model, optimizer)
