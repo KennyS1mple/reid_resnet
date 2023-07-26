@@ -16,6 +16,7 @@ def get_args():
     parser.add_argument("--res_depth", default=50, type=int, help="resnet depth")
     parser.add_argument("--lr", default=1e-3, type=float)
     parser.add_argument("--flip_odds", default=0.5, type=float, help="odds of flip of augmentation")
+    parser.add_argument("--rotate_odds", default=0.5, type=float, help="odds of rotate of augmentation")
     parser.add_argument("--sv_augmentation", default=True, type=bool, help="sv augmentation")
     parser.add_argument("--use_pretrained", default=False, type=bool, help="use weight trained on imagenet")
     parser.add_argument("--use_relu", default=False, type=bool, help="use relu in fc")
@@ -28,7 +29,7 @@ def get_args():
     parser.add_argument("--img1_path", default="", help="path for img1 waiting for inference")
     parser.add_argument("--show_args", default="true", help="print args to output")
     parser.add_argument("--dataset_path",
-                        default="/media/cacious/share/luggage_detect/reid_dataset/labeled/reid_dataset_0726",
+                        default="/media/cacious/share/luggage_detect/reid_dataset/labeled/reid_dataset_0727",
                         help="path to training dataset")
 
     args = parser.parse_args()

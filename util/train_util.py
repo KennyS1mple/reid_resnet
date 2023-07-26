@@ -34,16 +34,16 @@ def train(model, dataloader, loss_func, optimizer, args):
             epoch_loss += loss.item()
         # scheduler.step()
 
-        print("epoch : %4d ---loss : %11.8f ---acc : %10.8f" %
+        print("epoch : %4d ---loss : %11.8f ---acc : %11.8f" %
               (epoch, epoch_loss, (correct / len(dataloader.dataset)).item()))
 
         if epoch % 50 == 0 and epoch > 0:
             now_time = time.strftime('%m%d_%H', time.localtime(time.time()))
-            save_model(f"./weight/weight_dataset0726/res{args.res_depth}_{now_time}_{epoch}_relu_{args.use_relu}.pth",
+            save_model(f"./weight/weight_dataset0727/res{args.res_depth}_{now_time}_{epoch}_relu_{args.use_relu}.pth",
                        epoch, model, optimizer)
             print("Weight saved successfully.epoch : %4d" % epoch)
         if args.epochs - epoch < 3:
             now_time = time.strftime('%m%d_%H', time.localtime(time.time()))
-            save_model(f"./weight/weight_dataset0726/res{args.res_depth}_{now_time}_{epoch}_relu_{args.use_relu}.pth",
+            save_model(f"./weight/weight_dataset0727/res{args.res_depth}_{now_time}_{epoch}_relu_{args.use_relu}.pth",
                        epoch, model, optimizer)
             print("Weight saved successfully.epoch : %4d" % epoch)

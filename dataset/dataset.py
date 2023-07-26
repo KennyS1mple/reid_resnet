@@ -27,6 +27,7 @@ class MyDataset(Dataset):
     def __init__(self, args):
         self.dataset_path = args.dataset_path
         self.flip_odds = args.flip_odds
+        self.rotate_odds = args.rotate_odds
         self.use_pretrained = args.use_pretrained
         self.sv_augmentation = args.sv_augmentation
         self.img_size = args.img_size
@@ -52,6 +53,15 @@ class MyDataset(Dataset):
         """ 左右翻转 """
         if random.random() > self.flip_odds:
             img = cv2.flip(img, 1)
+
+        """
+        旋转90度
+        """
+        if random.random() > self.rotate_odds:
+            if random.random() > 0.5:
+                img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
+            else:
+                img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 
         """ 图片曝光增强 """
         if self.sv_augmentation:
