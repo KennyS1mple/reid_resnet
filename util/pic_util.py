@@ -65,7 +65,8 @@ def get_obj_img(img_path, label_path, save_path):
             h = img.shape[0]
 
             with open(os.path.join(label_path, filename_label), "r+", encoding='utf-8', errors="ignor") as f:
-                for line in f:
+                lines = [_line.strip() for _line in f.readlines()]
+                for line in lines:
                     # 根据空格切割字符串，最后得到的是一个list
                     msg = line.split(" ")
                     x1 = int((float(msg[1]) - float(msg[3]) / 2) * w)

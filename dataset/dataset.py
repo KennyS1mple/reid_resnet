@@ -45,9 +45,13 @@ class MyDataset(Dataset):
         label = int(img_path.split('/')[-2])
         img = np.asarray(Image.open(img_path).convert("RGB"), dtype=np.uint8)
 
-        """ 翻转 """
+        """ 上下翻转 """
         if random.random() > self.flip_odds:
             img = cv2.flip(img, 0)
+
+        """ 左右翻转 """
+        if random.random() > self.flip_odds:
+            img = cv2.flip(img, 1)
 
         """ 图片曝光增强 """
         if self.sv_augmentation:
