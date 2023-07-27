@@ -22,14 +22,14 @@ def get_args():
     parser.add_argument("--use_relu", default=False, type=bool, help="use relu in fc")
     parser.add_argument("--epochs", default=3000, type=int)
     parser.add_argument("--batch_size", default=256, type=int)
-    parser.add_argument("--num_class", default=1376, type=int)
+    parser.add_argument("--num_class", default=1392, type=int)
     parser.add_argument("--device", default="0", help="-1 for CPU")
     parser.add_argument("--weight_path", default="", help="path to trained model weight")
     parser.add_argument("--img0_path", default="", help="path for img0 waiting for inference")
     parser.add_argument("--img1_path", default="", help="path for img1 waiting for inference")
     parser.add_argument("--show_args", default="true", help="print args to output")
     parser.add_argument("--dataset_path",
-                        default="/media/cacious/share/luggage_detect/reid_dataset/labeled/reid_dataset_0727",
+                        default="/media/cacious/share/luggage_detect/reid_dataset/labeled/reid_dataset_0728",
                         help="path to training dataset")
 
     args = parser.parse_args()
