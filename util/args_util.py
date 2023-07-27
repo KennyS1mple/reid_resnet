@@ -25,6 +25,7 @@ def get_args():
     parser.add_argument("--num_class", default=1392, type=int)
     parser.add_argument("--device", default="0", help="-1 for CPU")
     parser.add_argument("--weight_path", default="", help="path to trained model weight")
+    parser.add_argument("--inf_img_path", default="", help="kunkun inf only")
     parser.add_argument("--img0_path", default="", help="path for img0 waiting for inference")
     parser.add_argument("--img1_path", default="", help="path for img1 waiting for inference")
     parser.add_argument("--show_args", default="true", help="print args to output")

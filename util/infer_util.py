@@ -11,6 +11,7 @@ def get_match_score(model, img0_path, img1_path, args):
     img1 = pic2tensor(img1_path, args)
     _input = torch.cat([img0, img1], 0).to(args.device)
 
+    model.to(args.device)
     model.eval()
     _output = torch.nn.functional.normalize(model(_input))
     model.train()
@@ -21,3 +22,14 @@ def get_match_score(model, img0_path, img1_path, args):
     cos_dis = torch.dot(img0_reid, img1_reid).item()
 
     return (cos_dis + 1) / 2
+
+
+def get_reid_normed(model, img_path, args):
+    img = pic2tensor(img_path, args).to(args.device)
+
+    model.to(args.device)
+    model.eval()
+    _output = torch.nn.functional.normalize(model(img))
+    model.train()
+
+    return _output[0]
