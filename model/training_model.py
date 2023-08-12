@@ -6,10 +6,11 @@ from torch import nn
 
 
 class TrainingModel(nn.Module):
-    def __init__(self, model, reid_dim, num_class):
+    def __init__(self, model, reid_dim, num_class=None):
         super(TrainingModel, self).__init__()
         self.model = model
-        self.classifier = nn.Linear(reid_dim, num_class)
+        if num_class is not None:
+            self.classifier = nn.Linear(reid_dim, num_class)
 
     def forward(self, x):
         x = self.model(x)

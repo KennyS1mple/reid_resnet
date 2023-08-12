@@ -10,10 +10,11 @@ from util.infer_util import get_reid_normed
 
 args = get_args()
 args.device = torch.device("cpu")
+args.num_class = None
 
 training_model = create_training_model(args)
 training_model = load_model(training_model, args.weight_path)
 model = training_model.model
 
-reid_normed = get_reid_normed(model, args.inf_img_path)
+reid_normed = get_reid_normed(model, args.inf_img_path, args)
 print(reid_normed.detach().numpy().tolist())
