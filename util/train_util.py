@@ -2,6 +2,8 @@
 # Data     : 7/24/23  9:45 PM
 # File name: train_util
 # Desc     :
+import os
+
 import torch
 import time
 from util.weight_util import save_model
@@ -14,6 +16,9 @@ def train(model, dataloader, loss_func, optimizer, args):
     model = model.to(args.device)
     model.train()
     print("Start training...")
+
+    if not os.path.exists(args.weight_save_path):
+        os.mkdir(args.weight_save_path)
 
     for epoch in range(args.epochs):
         correct = 0
@@ -39,11 +44,11 @@ def train(model, dataloader, loss_func, optimizer, args):
 
         if epoch % 30 == 0 and epoch > 0:
             now_time = time.strftime('%m%d_%H', time.localtime(time.time()))
-            save_model(f"./weight/weight0813/res{args.res_depth}_{now_time}_{epoch}_relu_{args.use_relu}.pth",
+            save_model(f"{args.weight_save_path}/res{args.res_depth}_{now_time}_{epoch}_relu_{args.use_relu}.pth",
                        epoch, model, optimizer)
             print("Weight saved successfully.epoch : %4d" % epoch)
         if args.epochs - epoch < 3:
             now_time = time.strftime('%m%d_%H', time.localtime(time.time()))
-            save_model(f"./weight/weight0813/res{args.res_depth}_{now_time}_{epoch}_relu_{args.use_relu}.pth",
+            save_model(f"{args.weight_save_path}/res{args.res_depth}_{now_time}_{epoch}_relu_{args.use_relu}.pth",
                        epoch, model, optimizer)
             print("Weight saved successfully.epoch : %4d" % epoch)

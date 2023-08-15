@@ -11,6 +11,7 @@ import time
 
 args = get_args()
 args.device = torch.device("cpu")
+args.num_class = None
 
 training_model = create_training_model(args)
 training_model = load_model(training_model, args.weight_path)
